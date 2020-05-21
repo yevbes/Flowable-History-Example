@@ -1,5 +1,5 @@
 # History configuration
-To persist historic information it is necesary define history level with async history definition. This definitions can be configured using properties file. 
+To persist historic information it is necessary define history level with async history definition. This definitions can be configured using properties file.
 
 ```sh
 # flowable.process.servlet.path=/service # Process servlet path definition
@@ -12,6 +12,8 @@ Async History has been introduced with Flowable 6.1.0 and allows historic data t
 - **activity**: archives all process instances and activity instances. At the end of the process instance, the latest values of the top level process instance variables will be copied to historic variable instances. No details will be archived.
 - **audit**: This is the default. It archives all process instances, activity instances, keeps variable values continuously in sync and all form properties that are submitted so that all user interaction through forms is traceable and can be audited.
 - **full**: This is the highest level of history archiving and hence the slowest. This level stores all information as in the audit level plus all other possible details, mostly this are process variable updates.
+
+History task logging is enabled from the Process Engine Configuration class method `setEnableHistoricTaskLogging`.
 
 ## Rest API
 #### History detail queries
