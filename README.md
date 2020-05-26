@@ -15,6 +15,21 @@ Async History has been introduced with Flowable 6.1.0 and allows historic data t
 
 History task logging is enabled from the Process Engine Configuration class method `setEnableHistoricTaskLogging`.
 
+## Flowable Java API
+This approach consists in obtaining relevant information from data base tables using Spring Boot Controller-Service methods.
+
+###### This project includes two services which obtaining information from data base and return it to controller:
+- **TaskService** - obtain all id's of completed tasks from database table HistoricTaskInstance.
+- **ClaimsCompletesService** - obtain all relevant information of completed task by its id from data base table HistoricTaskLog.
+
+###### Controllers which responds to the request from the client by endpoints:
+- **TaskController** - has method to get all completed task with endpoint `{{baseUrl}}/task-history/tasks`
+- **ClaimsCompletesController** - has method to get all relevant data of completed tasks by its id with the following endpoint `{{baseUrl}}/task-history/claims-completed/:taskId`
+
+### Example
+#### Get complete user tasks id's
+
+
 ## Rest API
 #### History detail queries
 Historic detail data can be fetched using following queries:
@@ -45,7 +60,7 @@ Historic detail data can be fetched using following queries:
 |selectOnlyFormProperties - <boolean>|
 |selectOnlyVariableUpdates - <boolean>|
 
-## Example
+### Example
 `[GET] {{baseUrl}}/history/historic-detail?processInstanceId=1c4b1e36-9b82-11ea-92fb-acde48001122`
 ```json
 {
@@ -119,7 +134,7 @@ Historic detail data can be fetched using following queries:
 }
 ```
 
-### History task logs queries
+#### History task logs queries
 `[GET] {{baseUrl}}/history/historic-task-log-entries`
 
 ```json
@@ -246,7 +261,7 @@ Historic detail data can be fetched using following queries:
 }
 ```
 
-#### Database definition table
+### Database definition table
 `ACT_HI_VARINST`
 ```csv
 id_,rev_,proc_inst_id_,execution_id_,task_id_,name_,var_type_,scope_id_,sub_scope_id_,scope_type_,bytearray_id_,double_,long_,text_,text2_,create_time_,last_updated_time_
