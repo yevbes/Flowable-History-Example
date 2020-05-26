@@ -20,15 +20,69 @@ This approach consists in obtaining relevant information from data base tables u
 
 ###### This project includes two services which obtaining information from data base and return it to controller:
 - **TaskService** - obtain all id's of completed tasks from database table HistoricTaskInstance.
-- **ClaimsCompletesService** - obtain all relevant information of completed task by its id from data base table HistoricTaskLog.
+- **ClaimsCompletesService** - obtain all relevant infomation of completed task by its id from data base table HistoricTaskLog.
 
 ###### Controllers which responds to the request from the client by endpoints:
 - **TaskController** - has method to get all completed task with endpoint `{{baseUrl}}/task-history/tasks`
-- **ClaimsCompletesController** - has method to get all relevant data of completed tasks by its id with the following endpoint `{{baseUrl}}/task-history/claims-completed/:taskId`
+- **ClaimsCompletesController** - has method to get all relevant data of completed task by its id with the following endpoint `{{baseUrl}}/task-history/claims-completed/:taskId`
 
 ### Example
 #### Get complete user tasks id's
+`[GET] {baseUrl}}/task-history/tasks`
+```json
+[
+  {
+    "id": "1c4fd92e-9b82-11ea-92fb-acde48001122"
+  },
+  {
+    "id": "27ad6cc2-9ea9-11ea-843d-acde48001122"
+  },
+  {
+    "id": "4cb073f2-9eab-11ea-843d-acde48001122"
+  },
+  {
+    "id": "615f891a-9e73-11ea-9cda-acde48001122"
+  },
+  {
+    "id": "708ed8a3-9eaa-11ea-8ed6-0242c0a80002"
+  }
+]
+```
 
+#### Get comple task information by id
+`[GET] {{baseUrl}}/task-history/claims-completed/:taskId`
+```json
+[
+  {
+    "taskId": "e30bdbbb-9eac-11ea-843d-acde48001122",
+    "timestamp": "2020-05-25T17:26:36.899+0000",
+    "action": "USER_TASK_CREATED",
+    "values": null,
+    "user": "admin"
+  },
+  {
+    "taskId": "e30bdbbb-9eac-11ea-843d-acde48001122",
+    "timestamp": "2020-05-25T17:26:36.899+0000",
+    "action": "USER_TASK_IDENTITY_LINK_ADDED",
+    "values": "{\"userId\":\"user1\",\"type\":\"candidate\"}",
+    "user": "admin"
+  },
+  {
+    "taskId": "e30bdbbb-9eac-11ea-843d-acde48001122",
+    "timestamp": "2020-05-25T17:26:36.899+0000",
+    "action": "USER_TASK_IDENTITY_LINK_ADDED",
+    "values": "{\"userId\":\"user2\",\"type\":\"candidate\"}",
+    "user": "admin"
+  },
+  {
+    "taskId": "e30bdbbb-9eac-11ea-843d-acde48001122",
+    "timestamp": "2020-05-25T17:27:19.376+0000",
+    "action": "USER_TASK_ASSIGNEE_CHANGED",
+    "values": "{\"newAssigneeId\":\"user1\",\"previousAssigneeId\":user2}",
+    "user": "admin"
+  }
+]
+```
 
 ## Rest API
 #### History detail queries
