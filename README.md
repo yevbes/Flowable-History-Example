@@ -19,7 +19,7 @@ History task logging is enabled from the Process Engine Configuration class meth
 This approach consists in obtaining relevant information from data base tables using Spring Boot Controller-Service methods.
 
 ###### This project includes two services that obtain information from data base and return it to controller:
-- **TaskService** - gets all id's of completed tasks from database table `ACT_HI_TASKINST.
+- **TaskService** - gets all id's of completed tasks from database table `ACT_HI_TASKINST`.
 - **ClaimsCompletesService** - gets all relevant information of completed task by its id from data base table `ACT_HI_TSK_LOG`.
 
 ###### Controllers which responds to the request from the client by endpoints:
